@@ -21,8 +21,9 @@ mongoose.connect(process.env.MONGO_URI, {
 // Define Schema and Model
 const DataSchema = new mongoose.Schema({
     string1: String,
-    string2: String
+    string2: Number // Changed to Number
 });
+
 const DataModel = mongoose.model('Data', DataSchema);
 
 // POST endpoint to add data
@@ -30,9 +31,10 @@ app.post('/addData', async (req, res) => {
     try {
         const { string1, string2 } = req.body;
 
-        if (!string1 || !string2) {
-            return res.status(400).json({ message: 'Both string1 and string2 are required' });
+        if (!string1 || typeof string2 !== 'number') { // Check if string2 is a number
+            return res.status(400).json({ message: 'Both string1 must be a string and string2 must be a number' });
         }
+
 
         console.log('Received Data:', { string1, string2 });
 
