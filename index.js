@@ -25,7 +25,7 @@ const DataSchema = new mongoose.Schema({
 });
 const DataModel = mongoose.model('Data', DataSchema);
 
-// POST endpoint
+// POST endpoint to add data
 app.post('/addData', async (req, res) => {
     try {
         const { string1, string2 } = req.body;
@@ -40,8 +40,22 @@ app.post('/addData', async (req, res) => {
         const savedData = await newData.save();
         console.log('Saved Data:', savedData);
 
+        res.status(201).json({ message: 'Data saved successfully', data: savedData });
+    } catch (error) {
+        res.status(500).json({ message: 'Internal Server Error', error });
+    }
+});
 
-        res.status(201).json({ message: 'Data saved successfully', data: newData });
+// GET endpoint to fetch all data from the collection
+app.get('/getData', async (req, res) => {
+    try {
+        const data = await DataModel.find(); // Fetch all data from MongoDB
+
+        if (data.length === 0) {
+            return res.status(404).json({ message: 'No data found' });
+        }
+
+        res.status(200).json(data); // Return the fetched data
     } catch (error) {
         res.status(500).json({ message: 'Internal Server Error', error });
     }
