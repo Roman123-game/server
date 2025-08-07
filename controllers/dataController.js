@@ -19,7 +19,7 @@ exports.addData = async (req, res) => {
 };
 
 // GET /api/data
-exports.getAllData = async (req, res) => {
+exports.getData = async (req, res) => {
   try {
     const data = await DataModel.find();
     if (!data.length) {
