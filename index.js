@@ -7,7 +7,7 @@ const dataRoutes = require('./routes/dataRoutes');
 const statusRoutes = require('./routes/statusRoutes');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 
 // Middleware
 app.use(cors({ origin: '*' }));
@@ -25,7 +25,7 @@ mongoose.connection.on('disconnected', () => {
 });
 
 // Routes
-app.use('/', dataRoutes);
+app.use('/api/data', dataRoutes);
 app.use('/status', statusRoutes);
 
 // Start server
