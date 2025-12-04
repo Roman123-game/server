@@ -4,6 +4,6 @@ const { getStatus } = require('../controllers/statusController');
 
 const router = express.Router();
 
-router.get('/', getStatus);
+router.get('/test', getStatus);
 
 module.exports = router;
