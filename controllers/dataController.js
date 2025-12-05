@@ -8,8 +8,8 @@ exports.addData = async (req, res) => {
     if (!string1 || !string4 || typeof string2 !== 'number' || typeof string3 !== 'number') {
       return res.status(400).json({ message: 'Missing or invalid data' });
     }
-
-    const newData = new DataModel({ string1, string2, string3, string4 });
+    const string5 = new Date();
+    const newData = new DataModel({ string1, string2, string3, string4,string5 });
     const savedData = await newData.save();
 
     res.status(201).json({ message: 'Data saved successfully', data: savedData });
