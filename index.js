@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
+require('./config/usersDb')
 
 const dataRoutes = require('./routes/dataRoutes');
 const statusRoutes = require('./routes/statusRoutes');
@@ -34,4 +35,6 @@ app.use('/api/users', userRoutes);
 app.listen(port, '0.0.0.0', () => {
   console.log(`🚀 Server running on port ${port}`);
 });
+
+
 

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const usersDb = require('../config/usersDb');
 
 const UserSchema = new mongoose.Schema(
 	{
@@ -7,24 +8,17 @@ const UserSchema = new mongoose.Schema(
 			required: true,
 			unique: true
 		},
-		name: {
+		name: String,
+		email: {
 			type: String,
 			required: true
 		},
-		email: {
-			type: String,
-			required: true,
-			unique: true
-		},
 		picture: String,
-		lastLogin: {
-			type: Date,
-			default: Date.now
-		}
+		lastLogin: Date
 	},
 	{
 		timestamps: true
 	}
 );
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = usersDb.model('User', UserSchema);
