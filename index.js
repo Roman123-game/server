@@ -5,6 +5,7 @@ require('dotenv').config();
 
 const dataRoutes = require('./routes/dataRoutes');
 const statusRoutes = require('./routes/statusRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -27,8 +28,10 @@ mongoose.connection.on('disconnected', () => {
 // Routes
 app.use('/api/data', dataRoutes);
 app.use('/status', statusRoutes);
+app.use('/api/users', userRoutes);
 
 // Start server
 app.listen(port, '0.0.0.0', () => {
   console.log(`🚀 Server running on port ${port}`);
 });
+
