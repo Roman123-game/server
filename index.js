@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
-require('./config/usersDb')
+// require('./config/usersDb');
 
 const dataRoutes = require('./routes/dataRoutes');
 const statusRoutes = require('./routes/statusRoutes');
@@ -22,6 +22,7 @@ mongoose.connect(process.env.MONGO_URI, {
 .then(() => console.log('✅ MongoDB connected'))
 .catch(err => console.error('❌ MongoDB connection error:', err));
 
+
 mongoose.connection.on('disconnected', () => {
   console.warn('⚠️ MongoDB disconnected');
 });
@@ -35,6 +36,3 @@ app.use('/api/users', userRoutes);
 app.listen(port, '0.0.0.0', () => {
   console.log(`🚀 Server running on port ${port}`);
 });
-
-
-
