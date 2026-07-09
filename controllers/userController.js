@@ -1,4 +1,4 @@
-const UserModel = require('../models/userModel');
+const UserModel = require('../models/dataUser');
 
 // POST /api/users/login
 exports.saveGoogleUser = async (req, res) => {
